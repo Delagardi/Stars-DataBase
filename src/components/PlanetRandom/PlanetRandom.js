@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './PlanetRandom.css';
 import SwapiServices from '../../services/swapiServices';
 
 export default class PlanetRandom extends Component {
@@ -9,6 +10,7 @@ export default class PlanetRandom extends Component {
     super();
 
     this.state = {
+      id: null,
       planetName: null,
       population: null,
       rotationPeriod: null,
@@ -19,10 +21,13 @@ export default class PlanetRandom extends Component {
   }
 
   updatePlanet() {
+    const id = Math.floor(Math.random()*25 + 1);
+
     this.swapiService
-      .getPlanetById(10)
+      .getPlanetById(id)
       .then( (planet) => {
         this.setState({
+          id,
           planetName: planet.name,
           population: planet.population,
           rotationPeriod: planet.rotation_period,
@@ -32,12 +37,12 @@ export default class PlanetRandom extends Component {
   }
 
   render(){
-    const { planetName, population, rotationPeriod, diametr } = this.state;
+    const { id, planetName, population, rotationPeriod, diametr } = this.state;
 
     return (
       <div className="random-planet jumbotron rounded">
         <img className="planet-image"
-            src="https://starwars-visualguide.com/assets/img/planets/5.jpg" />
+            src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
         <div>
           <h4>{planetName}</h4>
           <ul className="list-group list-group-flush">
