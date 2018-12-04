@@ -13,7 +13,7 @@ export default class ItemList extends Component {
 
   swapiService = new SwapiService();
 
-  componentWillMount() {
+  componentDidMount() {
     this.swapiService
       .getPeopleAll()
       .then((peopleList) => {
@@ -37,11 +37,12 @@ export default class ItemList extends Component {
 
   render() {
     const { peopleList } = this.state;
-    const itemView = this.renderItem(peopleList);
     
     if( !peopleList ) {
       return <Spinner/>
     }
+
+    const itemView = this.renderItem(peopleList);
     
     return (
       <ul className="item-list list-group">
