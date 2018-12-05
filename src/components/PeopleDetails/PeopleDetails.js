@@ -16,9 +16,7 @@ export default class PeopleDetails extends Component {
   swapiService = new SwapiService();
 
   componentDidMount() {
-    console.log('Did mount loading:', this.state.loading);
     this.updatePerson();
-    console.log('Did mount loading After update:', this.state.loading);
   }
 
   componentDidUpdate(prevProps) {
@@ -53,14 +51,13 @@ export default class PeopleDetails extends Component {
 
   render() {
     const { person, loading } = this.state;
-    console.log('person render()', person);
-    console.log('loading render()', loading);
-    if (!person) {
-      return <span>Select person from the list</span>
-    }
 
     const spinner = loading ? <Spinner/> : null;
     const content = !loading ? <PeopleDetailsView personDetails={person}/> : null;
+
+    if (!person) {
+      return <span>Select person from the list</span>
+    }
 
     return (
       <div className="person-details card">
@@ -79,7 +76,6 @@ const PeopleDetailsView = ({personDetails}) => {
     birthDate,
     eyeColor
   } = personDetails;
-  console.log('id', id);
 
   return (
     <React.Fragment>
