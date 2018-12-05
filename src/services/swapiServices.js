@@ -16,7 +16,6 @@ export default class SwapiServices {
 
   async getPeopleAll() {
     const response = await this.getResourse(`/people/`);
-    console.log('ITS ALIVE! ALIVE! ALIVEE!! (getPeopleAll):', response); // not working
 
     return response.results.map(this._transformPersonData);
   }
