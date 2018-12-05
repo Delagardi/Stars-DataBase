@@ -55,10 +55,6 @@ export default class PeopleDetails extends Component {
     const spinner = loading ? <Spinner/> : null;
     const content = !loading ? <PeopleDetailsView personDetails={person}/> : null;
 
-    if (!person) {
-      return <span>Select person from the list</span>
-    }
-
     return (
       <div className="person-details card">
         {spinner}
