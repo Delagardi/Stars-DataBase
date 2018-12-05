@@ -3,6 +3,7 @@ import './PeoplePage.css';
 import ItemList from  '../ItemList';
 import PeopleDetails from '../PeopleDetails';
 import ErrorMessage from '../ErrorMessage';
+import SwapiService from '../../services/swapiServices';
 
 export default class PeoplePage extends Component {
   constructor() {
@@ -13,6 +14,8 @@ export default class PeoplePage extends Component {
       hasError: false
     }
   }
+
+  swapiService = new SwapiService();
 
   componentDidCatch() {
     this.setState({
@@ -34,10 +37,11 @@ export default class PeoplePage extends Component {
     }
 
     return(
-      <div className="row mb2">
+      <div className="row mb-2">
         <div className="col-md-6">
           <ItemList 
-            onPersonSelected={this.onPersonSelected}/>
+            onPersonSelected={this.onPersonSelected}
+            getData={this.swapiService.getPeopleAll}/>
         </div>
         <div className="col-md-6">
           <PeopleDetails 
