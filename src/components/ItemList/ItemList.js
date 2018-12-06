@@ -12,8 +12,7 @@ export default class ItemList extends Component {
 
   componentDidMount() {
     const { getData } = this.props;
-    console.log('getData:');
-    console.log(getData);
+    
     getData()
       .then((itemList) => {
         this.setState({
@@ -31,7 +30,7 @@ export default class ItemList extends Component {
         <li 
           key={id}
           className="list-group-item"
-          onClick={ () => this.props.onPersonSelected(id)}>
+          onClick={ () => this.props.onItemSelected(id)}>
           {label}
         </li>
       );

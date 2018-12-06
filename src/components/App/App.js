@@ -5,6 +5,7 @@ import './App.css';
 import PeoplePage from '../PeoplePage/';
 import ErrorMessage from '../ErrorMessage';
 import SwapiServices from '../../services/swapiServices';
+import StarshipPage from '../StarshipPage';
 
 export default class App extends Component {
   constructor() {
@@ -36,6 +37,7 @@ export default class App extends Component {
           <Header />
           <PlanetRandom />
           <PeoplePage/>
+          <StarshipPage/>
         </div>
       </div>
     );
