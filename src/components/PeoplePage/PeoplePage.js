@@ -4,19 +4,7 @@ import ItemList from  '../ItemList';
 import PeopleDetails from '../PeopleDetails';
 import ErrorMessage from '../ErrorMessage';
 import SwapiService from '../../services/swapiServices';
-
-const Row = ({ left, right }) => {
-  return (
-    <div className="row mb-2">
-      <div className="col-md-6">
-        {left}
-      </div>
-      <div className="col-md-6">
-        {right}
-      </div>
-    </div>
-  );
-}
+import Row from '../Row';
 
 export default class PeoplePage extends Component {
   constructor() {
