@@ -27,8 +27,6 @@ export default class SwapiServices {
 
   getPlanetsAll = async () => {
     const response = await this.getResourse(`/planets/`);
-    console.log('getPlanetsAll response:');
-    console.log(response);
     return response.results.map(this._transformPlanetData);
   }
 
@@ -61,7 +59,7 @@ export default class SwapiServices {
       name: planet.name,
       population: planet.population,
       rotationPeriod: planet.rotation_period,
-      diametr: planet.diametr
+      diameter: planet.diameter
     }
   }
 

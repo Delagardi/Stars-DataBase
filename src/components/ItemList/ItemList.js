@@ -22,43 +22,20 @@ export default class ItemList extends Component {
       }).catch( (error) => console.log ('We catch some error here!', error));
   }
 
-  renderItem(array) {
-    const { dataType } = this.props;
-    
-    if (dataType === 'peopleType') {
-      return array.map( ({ id, name}) => {
-        return (
-          <li 
-            key={id}
-            className="list-group-item"
-            onClick={ () => this.props.onPersonSelected(id)}>
-            {name}
-          </li>
-        );
-      });
-    } else if (dataType === 'starshipType') {
-      return array.map( ({ id, name, model}) => {
-        return (
-          <li 
-            key={id}
-            className="list-group-item"
-            onClick={ () => this.props.onPersonSelected(id)}>
-            {name} model {model}
-          </li>
-        );
-      });
-    } else if (dataType === 'planetType') {
-      return array.map( ({ id, name, population}) => {
-        return (
-          <li 
-            key={id}
-            className="list-group-item"
-            onClick={ () => this.props.onPersonSelected(id)}>
-            {name} population {population}
-          </li>
-        );
-      });      
-    }
+  renderItems(array) {
+    return array.map( (item) => {
+      const { id } = item;
+      const label = this.props.renderItem(item);
+
+      return (
+        <li 
+          key={id}
+          className="list-group-item"
+          onClick={ () => this.props.onPersonSelected(id)}>
+          {label}
+        </li>
+      );
+    });
   }
 
   render() {
@@ -68,7 +45,7 @@ export default class ItemList extends Component {
       return <Spinner/>
     }
 
-    const itemView = this.renderItem(itemList);
+    const itemView = this.renderItems(itemList);
     
     return (
       <ul className="item-list list-group">
