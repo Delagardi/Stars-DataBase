@@ -23,16 +23,42 @@ export default class ItemList extends Component {
   }
 
   renderItem(array) {
-    return array.map( ({ id, name}) => {
-      return (
-        <li 
-          key={id}
-          className="list-group-item"
-          onClick={ () => this.props.onPersonSelected(id)}>
-          {name}
-        </li>
-      );
-    });
+    const { dataType } = this.props;
+    
+    if (dataType === 'peopleType') {
+      return array.map( ({ id, name}) => {
+        return (
+          <li 
+            key={id}
+            className="list-group-item"
+            onClick={ () => this.props.onPersonSelected(id)}>
+            {name}
+          </li>
+        );
+      });
+    } else if (dataType === 'starshipType') {
+      return array.map( ({ id, name, model}) => {
+        return (
+          <li 
+            key={id}
+            className="list-group-item"
+            onClick={ () => this.props.onPersonSelected(id)}>
+            {name} model {model}
+          </li>
+        );
+      });
+    } else if (dataType === 'planetType') {
+      return array.map( ({ id, name, population}) => {
+        return (
+          <li 
+            key={id}
+            className="list-group-item"
+            onClick={ () => this.props.onPersonSelected(id)}>
+            {name} population {population}
+          </li>
+        );
+      });      
+    }
   }
 
   render() {
