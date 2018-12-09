@@ -1,9 +1,10 @@
 import React, { Component} from 'react';
 import ItemList from  '../ItemList';
-import ItemDetails from '../ItemDetails';
+import ItemDetails, { Record } from '../ItemDetails/ItemDetails';
 import SwapiService from '../../services/swapiServices';
 import Row from '../Row';
 import ErrorBoundry from '../ErrorBoundry';
+
 import './StarshipPage.css';
 
 export default class StarshipPage extends Component {
@@ -40,8 +41,10 @@ export default class StarshipPage extends Component {
       <ItemDetails 
         itemId={selectedStarship}
         getData={ (itemId) => this.swapiService.getStarshipsById(itemId)}
-        getImageUrl={this.swapiService.getStarshipUrl}
-      />
+        getImageUrl={this.swapiService.getStarshipUrl}>
+        <Record field="length" label='Length:' />
+        <Record field="model" label='Model:' />
+      </ItemDetails>
     );
 
     return(

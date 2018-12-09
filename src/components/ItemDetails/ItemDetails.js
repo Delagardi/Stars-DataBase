@@ -3,6 +3,21 @@ import SwapiService from '../../services/swapiServices';
 import Spinner from '../Spinner';
 import './ItemDetails.css';
 
+const Record = ({ item, field, label }) => {
+  const content = item === null ? <Spinner/> : item[field];
+
+  return (
+    <li className="list-group-item">
+      <span className="term">{label}</span>
+      <span>{ content }</span>
+    </li>
+  );
+};
+
+export {
+  Record
+};
+
 export default class ItemDetails extends Component {
   constructor() {
     super();
@@ -45,7 +60,6 @@ export default class ItemDetails extends Component {
     }
 
     getData(itemId)
-      //.then( this.onItemDetailsLoaded )
       .then( (item) => {
           this.setState({
             item,
@@ -60,16 +74,21 @@ export default class ItemDetails extends Component {
 
   render() {
     const { item, image, loading } = this.state;
-    console.log('image:');
-    console.log(image);
-
-    const spinner = loading ? <Spinner/> : null;
+    
+    const spinner = (loading || (item === null)) ? <Spinner/> : null;
     const content = !loading ? <ItemDetailsView itemDetails={item} image={image}/> : null;
 
     return (
       <div className="item-details card">
         {spinner}
-        {content}    
+        {content}
+        <ul>
+            {
+              React.Children.map(this.props.children, (child) => {
+                return React.cloneElement(child, { item });
+              })
+            }
+        </ul>
       </div>
     );
   }

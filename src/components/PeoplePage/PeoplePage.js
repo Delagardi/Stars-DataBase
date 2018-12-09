@@ -1,10 +1,11 @@
 import React, { Component} from 'react';
-import './PeoplePage.css';
 import ItemList from  '../ItemList';
-import ItemDetails from '../ItemDetails';
+import ItemDetails, { Record } from '../ItemDetails/ItemDetails';
 import SwapiService from '../../services/swapiServices';
 import Row from '../Row';
 import ErrorBoundry from '../ErrorBoundry';
+
+import './PeoplePage.css';
 
 export default class PeoplePage extends Component {
   constructor() {
@@ -40,8 +41,10 @@ export default class PeoplePage extends Component {
       <ItemDetails 
         itemId={selectedPerson}
         getData={ (itemId) => this.swapiService.getPeopleById(itemId) }
-        getImageUrl={this.swapiService.getPersonUrl}
-      />
+        getImageUrl={this.swapiService.getPersonUrl}>
+        <Record field="gender" label='GENDER' />
+        <Record field="eyeColor" label='EYE COLOR' />
+      </ItemDetails>
     );
 
     return(
