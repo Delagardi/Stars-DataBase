@@ -6,6 +6,7 @@ import PeoplePage from '../PeoplePage/';
 import ErrorMessage from '../ErrorMessage';
 import SwapiServices from '../../services/swapiServices';
 import StarshipPage from '../StarshipPage';
+import { SwapiServiceProvider } from '../SwapiServiceContext';
 
 export default class App extends Component {
   constructor() {
@@ -34,10 +35,12 @@ export default class App extends Component {
     return(
       <div>
         <div>
-          <Header />
-          <PlanetRandom />
-          <PeoplePage/>
-          <StarshipPage/>
+          <SwapiServiceProvider value={this.swapiService}>
+            <Header />
+            <PlanetRandom />
+            <PeoplePage/>
+            <StarshipPage/>
+          </SwapiServiceProvider>
         </div>
       </div>
     );

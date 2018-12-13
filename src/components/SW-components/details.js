@@ -1,28 +1,36 @@
 import React from 'react';
 import ItemDetails, { Record } from '../ItemDetails';
 import SwapiServices from '../../services/swapiServices';
+import { SwapiServiceConsumer } from '../SwapiServiceContext';
 
 const swapiService = new SwapiServices();
 
 const {
-  getPeopleById,
   getStarshipsById,
   //getPlanetById,
-  getPersonUrl,
+  
   //getPlanetUrl,
   getStarshipUrl
 } = swapiService;
 
 const PersonDetails = ({ itemId }) => {
   return (
-    <ItemDetails 
-      itemId={ itemId }
-      getData={ getPeopleById }
-      getImageUrl={ getPersonUrl }>
-      <Record field='gender' label='Gender:' />
-      <Record field='birthDate' label='Birth year:' />
-      <Record field='eyeColor' label='Eye color:' />
-    </ItemDetails>
+    <SwapiServiceConsumer>
+      {
+        ({ getPeopleById, getPersonUrl }) => {
+          return (
+            <ItemDetails 
+              itemId={ itemId }
+              getData={ getPeopleById }
+              getImageUrl={ getPersonUrl }>
+              <Record field='gender' label='Gender:' />
+              <Record field='birthDate' label='Birth year:' />
+              <Record field='eyeColor' label='Eye color:' />
+            </ItemDetails>
+          );
+        }
+      }
+    </SwapiServiceConsumer>
   );
 };
 
