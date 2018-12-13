@@ -1,9 +1,10 @@
 import React, { Component} from 'react';
-import ItemList from  '../ItemList';
-import ItemDetails, { Record } from '../ItemDetails/ItemDetails';
+//import ItemDetails, { Record } from '../ItemDetails/ItemDetails';
 import SwapiService from '../../services/swapiServices';
 import Row from '../Row';
 import ErrorBoundry from '../ErrorBoundry';
+import { PersonList } from '../SW-components';
+import { PersonDetails } from '../SW-components';
 
 import './PeoplePage.css';
 
@@ -28,23 +29,14 @@ export default class PeoplePage extends Component {
     const { selectedPerson } = this.state;
     
     const itemList = (
-      <ItemList 
-        onItemSelected={this.onPersonSelected}
-        getData={this.swapiService.getPeopleAll}>
-        { 
-          ({ name, gender, birthDate }) => 
-            `${name}, (${gender}, ${birthDate})` }
-      </ItemList>
+      <PersonList
+        onItemSelected={this.onPersonSelected}>
+      </PersonList>
+      
     );
 
     const peopleDetails = (
-      <ItemDetails 
-        itemId={selectedPerson}
-        getData={ (itemId) => this.swapiService.getPeopleById(itemId) }
-        getImageUrl={this.swapiService.getPersonUrl}>
-        <Record field="gender" label='GENDER' />
-        <Record field="eyeColor" label='EYE COLOR' />
-      </ItemDetails>
+      <PersonDetails itemId={ selectedPerson } />
     );
 
     return(

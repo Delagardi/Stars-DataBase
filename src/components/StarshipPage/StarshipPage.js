@@ -1,10 +1,10 @@
 import React, { Component} from 'react';
-import ItemList from  '../ItemList';
-import ItemDetails, { Record } from '../ItemDetails/ItemDetails';
+//import ItemDetails, { Record } from '../ItemDetails/ItemDetails';
 import SwapiService from '../../services/swapiServices';
 import Row from '../Row';
 import ErrorBoundry from '../ErrorBoundry';
-
+import { StarshipList } from '../SW-components'
+import { StarshipDetails } from '../SW-components';
 import './StarshipPage.css';
 
 export default class StarshipPage extends Component {
@@ -28,23 +28,14 @@ export default class StarshipPage extends Component {
     const { selectedStarship } = this.state;
     
     const itemList = (
-      <ItemList 
-        onItemSelected={this.onStarshipSelected}
-        getData={this.swapiService.getStarshipsAll}>
-        { 
-          ({ name, model, length }) => 
-            `${name}, (${model}, ${length})` }
-      </ItemList>
+      <StarshipList
+        onItemSelected={this.onStarshipSelected}>
+        
+      </StarshipList>
     );
 
     const itemDetails = (
-      <ItemDetails 
-        itemId={selectedStarship}
-        getData={ (itemId) => this.swapiService.getStarshipsById(itemId)}
-        getImageUrl={this.swapiService.getStarshipUrl}>
-        <Record field="length" label='Length:' />
-        <Record field="model" label='Model:' />
-      </ItemDetails>
+      <StarshipDetails itemId={ selectedStarship } />
     );
 
     return(
