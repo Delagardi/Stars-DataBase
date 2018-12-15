@@ -23,7 +23,26 @@ const PersonDetails = ({ itemId }) => {
   );
 };
 
-//const PlanetDetails = () => {};
+const PlanetDetails = ({ itemId }) => {
+  return (
+    <SwapiServiceConsumer>
+      {
+        ({ getPlanetById, getPlanetUrl }) => {
+          return (
+            <ItemDetails 
+              itemId={ itemId }
+              getData={ getPlanetById }
+              getImageUrl={ getPlanetUrl }>
+              <Record field='name' label='Name:' />
+              <Record field='population' label='Population:' />
+              <Record field='diameter' label='Diameter:' />
+            </ItemDetails>
+          );
+        }
+      }
+    </SwapiServiceConsumer>
+  );
+};
 
 const StarshipDetails = ( { itemId } ) => {
   return (
@@ -48,6 +67,6 @@ const StarshipDetails = ( { itemId } ) => {
 
 export {
   PersonDetails,
-  //PlanetDetails,
+  PlanetDetails,
   StarshipDetails
 };

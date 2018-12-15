@@ -2,38 +2,38 @@ import React, { Component} from 'react';
 import SwapiService from '../../services/swapiServices';
 import Row from '../Row';
 import ErrorBoundry from '../ErrorBoundry';
-import { PersonList } from '../SW-components';
-import { PersonDetails } from '../SW-components';
+import { PlanetList } from '../SW-components';
+import { PlanetDetails } from '../SW-components';
 
 export default class PlanetPage extends Component {
   constructor() {
     super();
 
     this.state = {
-      selectedPerson: 4
+      selectedPlanet: 4
     }
   }
 
   swapiService = new SwapiService();
 
-  onPersonSelected = (id) => {
+  onPlanetSelected = (id) => {
     this.setState({
-      selectedPerson: id
+      selectedPlanet: id
     });
   }
 
   render() {
-    const { selectedPerson } = this.state;
+    const { selectedPlanet } = this.state;
     
     const itemList = (
-      <PersonList
-        onItemSelected={this.onPersonSelected}>
-      </PersonList>
+      <PlanetList
+        onItemSelected={this.onPlanetSelected}>
+      </PlanetList>
       
     );
 
     const peopleDetails = (
-      <PersonDetails itemId={ selectedPerson } />
+      <PlanetDetails itemId={ selectedPlanet } />
     );
 
     return(
