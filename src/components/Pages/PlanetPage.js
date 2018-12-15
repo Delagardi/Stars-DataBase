@@ -5,9 +5,7 @@ import ErrorBoundry from '../ErrorBoundry';
 import { PersonList } from '../SW-components';
 import { PersonDetails } from '../SW-components';
 
-import './PeoplePage.css';
-
-export default class PeoplePage extends Component {
+export default class PlanetPage extends Component {
   constructor() {
     super();
 

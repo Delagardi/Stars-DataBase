@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Header from '../Header';
 import PlanetRandom from '../PlanetRandom';
-import './App.css';
-import PeoplePage from '../PeoplePage/';
 import ErrorMessage from '../ErrorMessage';
 import SwapiServices from '../../services/swapiServices';
-import StarshipPage from '../StarshipPage';
 import { SwapiServiceProvider } from '../SwapiServiceContext';
+import { PeoplePage } from '../Pages';
+import { StarshipPage } from '../Pages';
+import { PlanetPage } from '../Pages';
+
+import './App.css';
 
 export default class App extends Component {
   constructor() {
@@ -40,6 +42,7 @@ export default class App extends Component {
             <PlanetRandom />
             <PeoplePage/>
             <StarshipPage/>
+            <PlanetPage/>
           </SwapiServiceProvider>
         </div>
       </div>
