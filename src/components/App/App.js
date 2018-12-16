@@ -5,7 +5,7 @@ import ErrorMessage from '../ErrorMessage';
 import ErrorBoundry from '../ErrorBoundry';
 import SwapiServices from '../../services/swapiServices';
 import { SwapiServiceProvider } from '../SwapiServiceContext';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { StarshipDetails } from '../SW-components';
 import { 
   PeoplePage,
@@ -59,35 +59,40 @@ export default class App extends Component {
                 <Header />
                 <PlanetRandom />
 
-                <Route path="/" render={ () => <h3>Welcome to Star DB</h3> } exact />
-                <Route path="/people/:id?" component={ PeoplePage } />
-                <Route path="/planets" component={ PlanetPage } />
-                <Route path="/starships" exact component={ StarshipPage } />
-                <Route 
-                  path="/starships/:id"
-                  render={ ({ match }) => {
-                    const { id } = match.params;
-                    return <StarshipDetails itemId={ id } />
-                  } } 
-                />
-                <Route 
-                  path="/login" 
-                  render={ 
-                    () => (
-                      <LoginPage 
-                        isOnLoggedIn={ isOnLoggedIn }
-                        onLogin={ this.onLogin }/>
-                    )
-                  }
-                />
-                <Route 
-                  path="/secret" 
-                  render={ 
-                    () => (
-                      <SecretPage isOnLoggedIn={ isOnLoggedIn }/>
-                    )
-                  }
-                />
+                <Switch>
+                  <Route path="/" render={ () => <h3>Welcome to Star DB</h3> } exact />
+                  <Route path="/people/:id?" component={ PeoplePage } />
+                  <Route path="/planets" component={ PlanetPage } />
+                  <Route path="/starships" exact component={ StarshipPage } />
+                  <Route 
+                    path="/starships/:id"
+                    render={ ({ match }) => {
+                      const { id } = match.params;
+                      return <StarshipDetails itemId={ id } />
+                    } } 
+                  />
+                  <Route 
+                    path="/login" 
+                    render={ 
+                      () => (
+                        <LoginPage 
+                          isOnLoggedIn={ isOnLoggedIn }
+                          onLogin={ this.onLogin }/>
+                      )
+                    }
+                  />
+                  <Route 
+                    path="/secret" 
+                    render={ 
+                      () => (
+                        <SecretPage isOnLoggedIn={ isOnLoggedIn }/>
+                      )
+                    }
+                  />
+                  <Route render={
+                    () => <h2>Sorry, page not found.</h2>
+                  }/>
+                </Switch>
 
               </div>
             </Router>
