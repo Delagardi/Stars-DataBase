@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 const PeoplePage = ({ history, match }) => {
   const { id } = match.params;
-  console.log(match);
+  
   return(
     <ErrorBoundry>
       <Row 
