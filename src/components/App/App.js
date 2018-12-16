@@ -9,6 +9,7 @@ import { PeoplePage } from '../Pages';
 import { StarshipPage } from '../Pages';
 import { PlanetPage } from '../Pages';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { StarshipDetails } from '../SW-components';
 
 import './App.css';
 
@@ -45,10 +46,16 @@ export default class App extends Component {
                 <Header />
                 <PlanetRandom />
 
-                <Route path="/" component={ () => <h3>Welcome to Star DB</h3> } exact />
+                <Route path="/" render={ () => <h3>Welcome to Star DB</h3> } exact />
                 <Route path="/people" component={ PeoplePage } />
                 <Route path="/planets" component={ PlanetPage } />
-                <Route path="/starships" component={ StarshipPage } />
+                <Route path="/starships" exact component={ StarshipPage } />
+                <Route path="/starships/:id"
+                      render={ ({ match }) => {
+                        const { id } = match.params;
+                        return <StarshipDetails itemId={ id } />
+                      } } 
+                      />
 
               </div>
             </Router>

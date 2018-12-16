@@ -27,9 +27,7 @@ export default class StarshipPage extends Component {
     
     const itemList = (
       <StarshipList
-        onItemSelected={this.onStarshipSelected}>
-        
-      </StarshipList>
+        onItemSelected={this.onStarshipSelected}/>
     );
 
     const itemDetails = (
