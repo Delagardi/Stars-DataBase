@@ -7,9 +7,9 @@ const Header = () => {
   return (
     <div className="header d-flex">
       <h3>
-        <a href="1">
+        <Link to="/">
           Star DB
-        </a>
+        </Link>
       </h3>
       <ul className="d-flex">
         <li>

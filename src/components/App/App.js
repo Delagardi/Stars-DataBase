@@ -45,10 +45,11 @@ export default class App extends Component {
                 <Header />
                 <PlanetRandom />
 
+                <Route path="/" component={ () => <h3>Welcome to Star DB</h3> } exact />
                 <Route path="/people" component={ PeoplePage } />
                 <Route path="/planets" component={ PlanetPage } />
                 <Route path="/starships" component={ StarshipPage } />
-                
+
               </div>
             </Router>
           </SwapiServiceProvider>
